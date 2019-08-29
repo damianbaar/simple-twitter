@@ -19,6 +19,8 @@ type Author {
  
 type Query {
   tweets(count: Int, offset: Int): [Tweet]!
+  tweetsByAuthor(authorId: String, count: Int, offset: Int): [Tweet]
+  authors: [Author]
 }
  
 type Mutation {

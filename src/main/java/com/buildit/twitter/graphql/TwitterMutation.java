@@ -1,7 +1,10 @@
-package com.buildit.twitter;
+package com.buildit.twitter.graphql;
 
 import java.util.UUID;
 
+import com.buildit.twitter.dao.TweetDao;
+import com.buildit.twitter.dto.Author;
+import com.buildit.twitter.dto.Tweet;
 import com.coxautodev.graphql.tools.GraphQLMutationResolver;
 
 import lombok.AllArgsConstructor;

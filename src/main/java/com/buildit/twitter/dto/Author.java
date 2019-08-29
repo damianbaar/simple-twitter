@@ -1,4 +1,4 @@
-package com.buildit.twitter;
+package com.buildit.twitter.dto;
 
 import java.util.List;
 import java.util.UUID;
@@ -28,7 +28,7 @@ public class Author {
     return String.format("%s (id: %d, author: %d)", name, id);
   }
 
-  static Author make(String name) {
+  static public Author make(String name) {
     Author tweet = new Author();
     tweet.id = UUID.randomUUID().toString();
     tweet.name = name;

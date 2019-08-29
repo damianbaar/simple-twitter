@@ -28,9 +28,9 @@ graphiql:
   cdn:
     enabled: false
   mapping: /graphiql
-  # endpoint:
-  #   graphql: /graphql
-  #   subscriptions: /subscriptions
+  endpoint:
+    graphql: /graphql
+    subscriptions: /subscriptions
   subscriptions:
     timeout: 30
     reconnect: false

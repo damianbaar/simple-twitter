@@ -1,4 +1,4 @@
-package com.buildit.twitter;
+package com.buildit.twitter.configuration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,9 +14,11 @@ import graphql.GraphQLError;
 import graphql.language.SourceLocation;
 import graphql.servlet.core.GraphQLErrorHandler;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Configuration
-public class GraphQLConfigurationErrorHandling {
+@Slf4j
+public class GraphQLErrorHandling {
 
   @Bean
   public GraphQLErrorHandler errorHandler() {
@@ -31,6 +33,8 @@ public class GraphQLConfigurationErrorHandling {
         List<GraphQLError> e = new ArrayList<>();
         e.addAll(clientErrors);
         e.addAll(serverErrors);
+
+        e.forEach(error -> log.error("GraphQL error {}", error.getMessage()));
         return e;
       }
 

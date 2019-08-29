@@ -1,4 +1,4 @@
-package com.buildit.twitter;
+package com.buildit.twitter.dto;
 
 import java.util.UUID;
 
@@ -23,7 +23,7 @@ public class FollowerEdge {
     return String.format("%s (id: %d, author: %d)", id);
   }
 
-  static FollowerEdge make(Author follower, Author following) {
+  static public FollowerEdge make(Author follower, Author following) {
     FollowerEdge edge = new FollowerEdge();
     edge.id = UUID.randomUUID().toString();
     edge.follower = follower;
