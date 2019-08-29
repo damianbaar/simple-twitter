@@ -1,0 +1,63 @@
+2019-08-29 14:51:10,911 INFO com.buildit.twitter.Application [restartedMain] Starting Application on Damians-MacBook-Pro.local with PID 81992 (/Users/damianbaar/workspaces/java/hsbc/backend/hsbc-challenge/bin/main started by damianbaar in /Users/damianbaar/workspaces/java/hsbc/backend/hsbc-challenge)
+2019-08-29 14:51:10,911 INFO com.buildit.twitter.Application [restartedMain] No active profile set, falling back to default profiles: default
+2019-08-29 14:51:11,085 INFO org.apache.catalina.core.StandardService [restartedMain] Starting service [Tomcat]
+2019-08-29 14:51:11,086 INFO org.apache.catalina.core.StandardEngine [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.22]
+2019-08-29 14:51:11,095 INFO org.apache.catalina.core.ContainerBase.[Tomcat-6].[localhost].[/] [restartedMain] Initializing Spring embedded WebApplicationContext
+2019-08-29 14:51:11,158 INFO com.oembedler.moon.graphql.boot.GraphQLWebAutoConfiguration [restartedMain] Building GraphQLObjectMapper including errorHandler: com.buildit.twitter.GraphQLConfigurationErrorHandling$1@5c7c339c
+2019-08-29 14:51:11,297 INFO com.buildit.twitter.Application [restartedMain] Started Application in 0.415 seconds (JVM running for 405.85)
+2019-08-29 14:51:24,645 INFO com.buildit.twitter.Application [restartedMain] Starting Application on Damians-MacBook-Pro.local with PID 82526 (/Users/damianbaar/workspaces/java/hsbc/backend/hsbc-challenge/bin/main started by damianbaar in /Users/damianbaar/workspaces/java/hsbc/backend/hsbc-challenge)
+2019-08-29 14:51:24,648 INFO com.buildit.twitter.Application [restartedMain] No active profile set, falling back to default profiles: default
+2019-08-29 14:51:26,143 INFO org.apache.catalina.core.StandardService [restartedMain] Starting service [Tomcat]
+2019-08-29 14:51:26,144 INFO org.apache.catalina.core.StandardEngine [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.22]
+2019-08-29 14:51:26,256 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [restartedMain] Initializing Spring embedded WebApplicationContext
+2019-08-29 14:51:26,913 INFO com.oembedler.moon.graphql.boot.GraphQLWebAutoConfiguration [restartedMain] Building GraphQLObjectMapper including errorHandler: com.buildit.twitter.GraphQLConfigurationErrorHandling$1@3d36b13c
+2019-08-29 14:51:27,713 ERROR org.apache.catalina.util.LifecycleBase [restartedMain] Failed to start component [Connector[HTTP/1.1-9000]]
+org.apache.catalina.LifecycleException: Protocol handler start failed
+	at org.apache.catalina.connector.Connector.startInternal(Connector.java:1008)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardService.addConnector(StandardService.java:227)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.addPreviouslyRemovedConnectors(TomcatWebServer.java:263)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:195)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.startWebServer(ServletWebServerApplicationContext.java:297)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.finishRefresh(ServletWebServerApplicationContext.java:163)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:552)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:141)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:743)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:390)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:312)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1214)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1203)
+	at com.buildit.twitter.Application.main(Application.java:14)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+Caused by: java.net.BindException: Address already in use
+	at java.base/sun.nio.ch.Net.bind0(Native Method)
+	at java.base/sun.nio.ch.Net.bind(Net.java:455)
+	at java.base/sun.nio.ch.Net.bind(Net.java:447)
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:219)
+	at java.base/sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:80)
+	at org.apache.tomcat.util.net.NioEndpoint.initServerSocket(NioEndpoint.java:230)
+	at org.apache.tomcat.util.net.NioEndpoint.bind(NioEndpoint.java:213)
+	at org.apache.tomcat.util.net.AbstractEndpoint.bindWithCleanup(AbstractEndpoint.java:1124)
+	at org.apache.tomcat.util.net.AbstractEndpoint.start(AbstractEndpoint.java:1210)
+	at org.apache.coyote.AbstractProtocol.start(AbstractProtocol.java:585)
+	at org.apache.catalina.connector.Connector.startInternal(Connector.java:1005)
+	... 19 common frames omitted
+2019-08-29 14:51:27,719 INFO org.apache.catalina.core.StandardService [restartedMain] Stopping service [Tomcat]
+2019-08-29 14:51:27,733 ERROR org.springframework.boot.diagnostics.LoggingFailureAnalysisReporter [restartedMain] 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+The Tomcat connector configured to listen on port 9000 failed to start. The port may already be in use or the connector may be misconfigured.
+
+Action:
+
+Verify the connector's configuration, identify and stop any process that's listening on port 9000, or configure this application to listen on another port.
+

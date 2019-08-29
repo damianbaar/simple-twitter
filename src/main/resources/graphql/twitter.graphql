@@ -1,0 +1,26 @@
+type Tweet {
+  id: ID!
+  message: String!
+  author: Author!
+}
+
+type FollowerEdge {
+  id: ID!
+  follower: Author!
+  following: Author!
+} 
+
+type Author {
+  id: ID!
+  name: String!
+  tweets: [Tweet]!
+  followers: [FollowerEdge]
+}
+ 
+type Query {
+  tweets(count: Int, offset: Int): [Tweet]!
+}
+ 
+type Mutation {
+  addTweet(message: String!, author: String!) : Tweet!
+}
