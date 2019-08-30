@@ -1,10 +1,9 @@
 package com.buildit.twitter.data;
 
-import java.util.Optional;
 import java.util.stream.Stream;
 
 import com.buildit.twitter.data.dto.Author;
 
 public interface IAuthorRepository {
-  Optional<Stream<Author>> getAuthors();
+  Stream<Author> getAuthors();
 }

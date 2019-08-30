@@ -3,6 +3,7 @@ package com.buildit.twitter.data;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 import com.buildit.twitter.data.dto.Tweet;
@@ -11,14 +12,18 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 public class TweetRepository implements ITweetRepository {
-  private Optional<Stream<Tweet>> tweets;
+  private Supplier<Optional<Stream<Tweet>>> tweets;
+
+  private Supplier<Optional<Stream<Tweet>>> tweetsSource() {
+    return () -> Optional.of(tweets.get().orElse(Stream.<Tweet>of()));
+  }
 
   public Optional<Stream<Tweet>> getTweets(int count, int offset) {
-    return tweets.map(applyRange(count, offset));
+    return tweetsSource().get().map(applyRange(count, offset));
   }
 
   public Optional<Stream<Tweet>> getTweetsByAuthor(String author, int count, int offset) {
-    return tweets.map(stream -> stream.filter(matchAuthorById(author))).map(applyRange(count, offset));
+    return tweetsSource().get().map(stream -> stream.filter(matchAuthorById(author))).map(applyRange(count, offset));
   }
 
   Predicate<Tweet> matchAuthorById(String wantedAuthor) {
@@ -29,8 +34,8 @@ public class TweetRepository implements ITweetRepository {
     return (Stream<Tweet> stream) -> stream.skip(count).limit(offset);
   }
 
-  // INFO: keeping in reverse order - recent on top to avoid sorting
   public void postTweet(Tweet tweet) {
-    // tweets.add(0, tweet);
+    Stream<Tweet> firstOnTop = Stream.of(tweet);
+    tweets = () -> tweetsSource().get().map(items -> Stream.concat(firstOnTop, items));
   }
 }

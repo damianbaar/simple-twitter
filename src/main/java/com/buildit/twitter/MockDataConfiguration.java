@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.function.IntFunction;
+import java.util.function.Supplier;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -23,20 +24,19 @@ public class MockDataConfiguration {
   @Bean
   public IAuthorRepository author() {
     String[] names = { "Thor", "Loki", "Hulk" };
-    Stream<Author> authors = new ArrayList<>(Arrays.asList(names)).stream().map(Author::make);
-    return new AuthorRepository(Optional.of(authors));
+    Supplier<Optional<Stream<Author>>> authors = () -> Optional
+        .of(new ArrayList<>(Arrays.asList(names)).stream().map(Author::make));
+    return new AuthorRepository(authors);
   }
-
-  private Author UNKNOWN = Author.make("UNKNOWN");
 
   @Bean
   public ITweetRepository tweet(IAuthorRepository authors) {
     // INFO: I'm sure here there will be an author
     IntFunction<Tweet> makeTweet = (int id) -> {
-      Optional<Author> firstAuthor = authors.getAuthors().map(stream -> stream.findFirst().orElse(UNKNOWN));
-      return Tweet.make("some message" + id, firstAuthor.get().getId());
+      Author firstAuthor = authors.getAuthors().findFirst().get();
+      return Tweet.make("some message" + id, firstAuthor.getId());
     };
-    Stream<Tweet> tweets = IntStream.range(0, 10).mapToObj(makeTweet);
-    return new TweetRepository(Optional.of(tweets));
+    Supplier<Optional<Stream<Tweet>>> tweets = () -> Optional.of(IntStream.range(0, 10).mapToObj(makeTweet));
+    return new TweetRepository(tweets);
   }
 }
