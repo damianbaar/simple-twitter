@@ -30,8 +30,8 @@ public class Query implements GraphQLQueryResolver {
     if (log.isInfoEnabled())
       log.info("Getting tweetsByAuthor, author: {}, count: {}, offset: {}", authorId, count, offset);
 
-    return tweetRepository.getTweets().filter(Filter.matchTweetWithAuthorById(authorId)).skip(offset).limit(count)
-        .collect(Collectors.toList());
+    return tweetRepository.getTweets().filter(i -> Filter.matchTweetWithAuthorById(authorId).apply(i)).skip(offset)
+        .limit(count).collect(Collectors.toList());
   };
 
 }

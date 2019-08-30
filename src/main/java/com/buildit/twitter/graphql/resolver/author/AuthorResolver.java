@@ -18,7 +18,8 @@ public class AuthorResolver implements GraphQLResolver<Author> {
   private ITweetRepository tweetRepository;
 
   public List<Tweet> tweets(Author author) {
-    return tweetRepository.getTweets().filter(Filter.matchTweetWithAuthorById(author.getId()))
+    // FIXME memoize
+    return tweetRepository.getTweets().filter(i -> Filter.matchTweetWithAuthorById(author.getId()).apply(i))
         .collect(List.collector());
   }
 }

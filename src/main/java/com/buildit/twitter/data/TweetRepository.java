@@ -20,7 +20,7 @@ public class TweetRepository implements ITweetRepository {
   }
 
   public Tweet addTweet(Tweet tweet) {
-    tweets = Optional.of(tweets.get().append(tweet));
+    tweets = Optional.of(tweets.get().prepend(tweet));
     return tweet;
   }
 }
