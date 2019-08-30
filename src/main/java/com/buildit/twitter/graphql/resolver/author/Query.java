@@ -1,5 +1,9 @@
 package com.buildit.twitter.graphql.resolver.author;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import com.buildit.twitter.data.IAuthorRepository;
 import com.buildit.twitter.data.dto.Author;
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
@@ -16,10 +20,10 @@ public class Query implements GraphQLQueryResolver {
   @Autowired
   private IAuthorRepository authorRepository;
 
-  public Author[] authors() {
+  public List<Author> authors() {
     if (log.isInfoEnabled())
       log.info("Getting authors");
 
-    return (Author[]) authorRepository.getAuthors().toArray();
+    return authorRepository.getAuthors().orElse(Stream.<Author>of()).collect(Collectors.toList());
   }
 }
