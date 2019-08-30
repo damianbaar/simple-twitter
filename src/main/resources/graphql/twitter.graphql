@@ -1,7 +1,7 @@
 type Tweet {
   id: ID!
   message: String!
-  author: Author!
+  authorId: String!
 }
 
 type FollowerEdge {
@@ -13,8 +13,8 @@ type FollowerEdge {
 type Author {
   id: ID!
   name: String!
-  tweets: [Tweet]!
-  followers: [FollowerEdge]
+  # tweets: [Tweet]!
+  # followers: [FollowerEdge]
 }
  
 type Query {
@@ -22,7 +22,7 @@ type Query {
   tweetsByAuthor(authorId: String, count: Int, offset: Int): [Tweet]
   authors: [Author]
 }
- 
+
 type Mutation {
-  addTweet(message: String!, author: String!) : Tweet!
+  addTweet(input: String!, author: String!) : Tweet!
 }
