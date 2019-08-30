@@ -1,9 +1,13 @@
 package com.buildit.twitter.data;
 
-import java.util.stream.Stream;
+import java.util.Optional;
 
 import com.buildit.twitter.data.dto.Author;
 
-public interface IAuthorRepository extends IRepository<Author> {
-  Stream<Author> getAuthors();
+import io.vavr.collection.List;
+
+public interface IAuthorRepository {
+  Optional<List<Author>> getAuthors();
+
+  Author addAuthor(Author author);
 }

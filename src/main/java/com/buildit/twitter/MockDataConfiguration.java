@@ -22,16 +22,16 @@ public class MockDataConfiguration {
   public IAuthorRepository author() {
     List<String> names = List.of("Thor", "Loki", "Hulk");
     List<Author> authors = names.map(name -> Author.builder().name(name).build());
-    return AuthorRepository.builder().authors(() -> Optional.of(authors.toJavaStream())).build();
+    return AuthorRepository.builder().authors(Optional.of(authors)).build();
   }
 
   @Bean
   public ITweetRepository tweet(IAuthorRepository authors) {
     Function<Integer, Tweet> makeTweet = (Integer id) -> {
-      Author firstAuthor = authors.getAuthors().findFirst().get();
+      Author firstAuthor = authors.getAuthors().get().get(0);
       return Tweet.builder().message("some message" + id).authorId(firstAuthor.getId()).build();
     };
     List<Tweet> tweets = List.range(0, 10).map(makeTweet);
-    return TweetRepository.builder().tweets(() -> Optional.of(tweets.toJavaStream())).build();
+    return TweetRepository.builder().tweets(Optional.of(tweets)).build();
   }
 }

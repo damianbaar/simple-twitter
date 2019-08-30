@@ -1,34 +1,25 @@
 package com.buildit.twitter.data;
 
 import java.util.Optional;
-import java.util.function.Supplier;
-import java.util.stream.Stream;
 
 import com.buildit.twitter.data.dto.Author;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
+import io.vavr.collection.List;
 import lombok.Builder;
 import lombok.Data;
 
 @Data
 @Builder
 public class AuthorRepository implements IAuthorRepository {
-  private Supplier<Optional<Stream<Author>>> authors;
+  @Builder.Default
+  private Optional<List<Author>> authors = Optional.of(List.empty());
 
-  @Autowired
-  private Helpers helpers;
-
-  public Supplier<Optional<Stream<Author>>> source() {
-    return () -> Optional.of(authors.get().orElse(Stream.<Author>of()));
-  }
-
-  public Stream<Author> getAuthors() {
-    return source().get().orElse(Stream.<Author>of());
-  }
-
-  public Supplier<Optional<Stream<Author>>> add(Author author) {
-    authors = helpers.add(author, source());
+  public Optional<List<Author>> getAuthors() {
     return authors;
+  }
+
+  public Author addAuthor(Author author) {
+    authors = Optional.of(authors.get().append(author));
+    return author;
   }
 }

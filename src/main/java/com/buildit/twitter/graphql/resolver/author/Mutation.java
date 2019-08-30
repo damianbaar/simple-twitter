@@ -15,7 +15,7 @@ public class Mutation implements GraphQLMutationResolver {
 
   public Author addAuthor(String name) {
     Author author = Author.builder().name(name).build();
-    authorRepository.add(author);
+    authorRepository.addAuthor(author);
     return author;
   }
 }

@@ -23,6 +23,6 @@ public class Query implements GraphQLQueryResolver {
     if (log.isInfoEnabled())
       log.info("Getting authors");
 
-    return authorRepository.getAuthors().collect(Collectors.toList());
+    return authorRepository.getAuthors().get().collect(Collectors.toList());
   }
 }

@@ -16,7 +16,7 @@ public class Mutation implements GraphQLMutationResolver {
 
   public Tweet addTweet(String message, Author authorId) {
     Tweet tweet = Tweet.builder().message(message).authorId(authorId.getId()).build();
-    tweetRepository.add(tweet);
+    tweetRepository.addTweet(tweet);
     return tweet;
   }
 }
