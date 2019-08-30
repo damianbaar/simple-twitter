@@ -25,4 +25,5 @@ type Query {
 
 type Mutation {
   addTweet(input: String!, author: String!) : Tweet!
+  addAuthor(name: String!) : Author!
 }

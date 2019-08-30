@@ -4,6 +4,6 @@ import java.util.stream.Stream;
 
 import com.buildit.twitter.data.dto.Author;
 
-public interface IAuthorRepository {
+public interface IAuthorRepository extends IRepository<Author> {
   Stream<Author> getAuthors();
 }
