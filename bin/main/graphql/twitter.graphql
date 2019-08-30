@@ -13,8 +13,8 @@ type FollowerEdge {
 type Author {
   id: ID!
   name: String!
-  # tweets: [Tweet]!
-  # followers: [FollowerEdge]
+  tweets: [Tweet]!
+  followers: [FollowerEdge]
 }
  
 type Query {

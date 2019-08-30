@@ -26,7 +26,7 @@ public class Query implements GraphQLQueryResolver {
     return tweetRepository.getTweets(count, offset).orElse(Stream.<Tweet>of()).collect(Collectors.toList());
   }
 
-  public List<Tweet> tweetsByAuthor(int count, int offset, String authorId) {
+  public List<Tweet> tweetsByAuthor(String authorId, int count, int offset) {
     if (log.isInfoEnabled())
       log.info("Getting tweetsByAuthor, author: {}, count: {}, offset: {}", authorId, count, offset);
 

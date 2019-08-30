@@ -24,7 +24,8 @@ public class MockDataConfiguration {
   @Bean
   public IAuthorRepository author() {
     ArrayList<String> names = new ArrayList<>(Arrays.asList("Thor", "Loki", "Hulk"));
-    Supplier<Optional<Stream<Author>>> authors = () -> Optional.of(names.stream().map(Author::make));
+    Supplier<Optional<Stream<Author>>> authors = () -> Optional
+        .of(names.stream().map(name -> Author.builder().name(name).build()));
     return AuthorRepository.builder().authors(authors).build();
   }
 
@@ -32,7 +33,7 @@ public class MockDataConfiguration {
   public ITweetRepository tweet(IAuthorRepository authors) {
     IntFunction<Tweet> makeTweet = (int id) -> {
       Author firstAuthor = authors.getAuthors().findFirst().get();
-      return Tweet.make("some message" + id, firstAuthor.getId());
+      return Tweet.builder().message("some message" + id).authorId(firstAuthor.getId()).build();
     };
     Supplier<Optional<Stream<Tweet>>> tweets = () -> Optional.of(IntStream.range(0, 10).mapToObj(makeTweet));
     return TweetRepository.builder().tweets(tweets).build();

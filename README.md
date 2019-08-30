@@ -19,6 +19,15 @@
     name
   }
 }
+
+* adding authors
+```gql
+mutation appendData {
+  addAuthor(name: "author-name") {
+    id
+    name
+  }
+}
 ```
 
 ### Development
