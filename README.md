@@ -35,8 +35,15 @@ mutation appendData {
   authors{
     id
     name
+    followers {
+      id
+    }
+    tweets {
+      message
+      id
+    }
   }
-  tweetsByAuthor(authorId: "<author_id>", count: 10, offset: 0) {
+  tweetsByAuthor(authorId: "4c309ddc-9cbc-4154-a698-880498c1e717", count: 10, offset: 0) {
     message
   }
   tweets(count: 10, offset: 0) {
@@ -46,8 +53,26 @@ mutation appendData {
   }
 }
 ```
+#### Mutation
+```gql
 
+mutation addAuthor {
+  addAuthor(name: "test") {
+    id
+    name
+  }
+}
+
+mutation addTweet {
+  addTweet(input: "<message>", author: "<author_id>") {
+    authorId
+    id
+    message
+  }
+}
+```
 ### Development
 #### Running locally
 * clone this repo
 * `./gradlew bootRun`
+* playground endpoint `http://localhost:9000/graphiql`

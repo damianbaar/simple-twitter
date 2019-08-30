@@ -1,7 +1,6 @@
 package com.buildit.twitter.data;
 
 import java.util.Optional;
-import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 import com.buildit.twitter.data.dto.Tweet;

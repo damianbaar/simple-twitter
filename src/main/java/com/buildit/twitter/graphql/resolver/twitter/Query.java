@@ -1,7 +1,6 @@
 package com.buildit.twitter.graphql.resolver.twitter;
 
 import java.util.List;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import com.buildit.twitter.data.ITweetRepository;
@@ -31,7 +30,7 @@ public class Query implements GraphQLQueryResolver {
     if (log.isInfoEnabled())
       log.info("Getting tweetsByAuthor, author: {}, count: {}, offset: {}", authorId, count, offset);
 
-    return tweetRepository.getTweets().filter(Filter.matchAuthorById(authorId)).skip(offset).limit(count)
+    return tweetRepository.getTweets().filter(Filter.matchTweetWithAuthorById(authorId)).skip(offset).limit(count)
         .collect(Collectors.toList());
   };
 

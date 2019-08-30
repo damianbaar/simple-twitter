@@ -1,7 +1,6 @@
 package com.buildit.twitter.graphql.resolver.twitter;
 
 import com.buildit.twitter.data.ITweetRepository;
-import com.buildit.twitter.data.dto.Author;
 import com.buildit.twitter.data.dto.Tweet;
 import com.coxautodev.graphql.tools.GraphQLMutationResolver;
 
@@ -14,8 +13,8 @@ public class Mutation implements GraphQLMutationResolver {
   @Autowired
   private ITweetRepository tweetRepository;
 
-  public Tweet addTweet(String message, Author authorId) {
-    Tweet tweet = Tweet.builder().message(message).authorId(authorId.getId()).build();
+  public Tweet addTweet(String message, String authorId) {
+    Tweet tweet = Tweet.builder().message(message).authorId(authorId).build();
     tweetRepository.addTweet(tweet);
     return tweet;
   }
