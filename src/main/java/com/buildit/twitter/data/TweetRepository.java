@@ -38,7 +38,7 @@ public class TweetRepository implements ITweetRepository {
   }
 
   Function<Stream<Tweet>, Stream<Tweet>> applyRange(int count, int offset) {
-    return (Stream<Tweet> stream) -> stream.skip(count).limit(offset);
+    return (Stream<Tweet> stream) -> stream.skip(offset).limit(count);
   }
 
   public Supplier<Optional<Stream<Tweet>>> add(Tweet tweet) {

@@ -29,6 +29,23 @@ mutation appendData {
   }
 }
 ```
+* getting stuff
+```gql
+{
+  authors{
+    id
+    name
+  }
+  tweetsByAuthor(authorId: "<author_id>", count: 10, offset: 0) {
+    message
+  }
+  tweets(count: 10, offset: 0) {
+    id
+    message
+    authorId
+  }
+}
+```
 
 ### Development
 #### Running locally

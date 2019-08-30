@@ -23,14 +23,13 @@ public class Query implements GraphQLQueryResolver {
     if (log.isInfoEnabled())
       log.info("Getting tweets, count: {}, offset: {}", count, offset);
 
-    return tweetRepository.getTweets(count, offset).orElse(Stream.<Tweet>of()).collect(Collectors.toList());
+    return tweetRepository.getTweets(count, offset).get().collect(Collectors.toList());
   }
 
   public List<Tweet> tweetsByAuthor(String authorId, int count, int offset) {
     if (log.isInfoEnabled())
       log.info("Getting tweetsByAuthor, author: {}, count: {}, offset: {}", authorId, count, offset);
 
-    return tweetRepository.getTweetsByAuthor(authorId, count, offset).orElse(Stream.<Tweet>of())
-        .collect(Collectors.toList());
+    return tweetRepository.getTweetsByAuthor(authorId, count, offset).get().collect(Collectors.toList());
   };
 }
