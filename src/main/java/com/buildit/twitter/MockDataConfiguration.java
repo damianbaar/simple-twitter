@@ -24,7 +24,7 @@ public class MockDataConfiguration {
   public IAuthorRepository author() {
     String[] names = { "Thor", "Loki", "Hulk" };
     Stream<Author> authors = new ArrayList<>(Arrays.asList(names)).stream().map(Author::make);
-    return new AuthorRepository(authors.collect(Collectors.toList()));
+    return new AuthorRepository(authors);
   }
 
   @Bean
@@ -33,6 +33,6 @@ public class MockDataConfiguration {
       return Tweet.make("some message" + id, authors.getAuthors().findFirst().get().getId());
     };
     Stream<Tweet> tweets = IntStream.range(0, 10).mapToObj(makeTweet);
-    return new TweetRepository(tweets.collect(Collectors.toList()));
+    return new TweetRepository(tweets);
   }
 }

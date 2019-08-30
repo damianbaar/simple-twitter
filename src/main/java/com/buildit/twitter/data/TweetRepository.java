@@ -3,6 +3,7 @@ package com.buildit.twitter.data;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import com.buildit.twitter.data.dto.Tweet;
 
@@ -10,23 +11,21 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 public class TweetRepository implements ITweetRepository {
-  private List<Tweet> tweets;
+  private Stream<Tweet> tweets;
 
-  public List<Tweet> getTweets(int count, int offset) {
-    return tweets.stream().skip(offset).limit(count).collect(Collectors.toList());
+  public Stream<Tweet> getTweets(int count, int offset) {
+    return tweets.skip(offset).limit(count);
   }
 
-  public List<Tweet> getTweetsByAuthor(String author, int count, int offset) {
+  public Stream<Tweet> getTweetsByAuthor(String author, int count, int offset) {
     Predicate<Tweet> matchAuthor = a -> {
       return author.equals(a.getAuthorId());
     };
 
-    return tweets.stream().filter(matchAuthor).skip(offset).limit(count).collect(Collectors.toList());
+    return tweets.filter(matchAuthor).skip(offset).limit(count);
   }
 
-  // INFO: keeping in reverse order - order matters - recent on top to avoid
-  // sorting
-  // remove this smutation
+  // INFO: keeping in reverse order - recent on top to avoid sorting
   public void postTweet(Tweet tweet) {
     tweets.add(0, tweet);
   }
