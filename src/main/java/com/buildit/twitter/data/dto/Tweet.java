@@ -8,6 +8,7 @@ import lombok.Value;
 @Value
 @Builder
 public class Tweet {
+  @Builder.Default
   private String id = UUID.randomUUID().toString();
   private String message;
   private String authorId;

@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import com.buildit.twitter.data.ITweetRepository;
 import com.buildit.twitter.data.dto.Tweet;
+import com.buildit.twitter.data.dto.Filter;
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,11 +31,8 @@ public class Query implements GraphQLQueryResolver {
     if (log.isInfoEnabled())
       log.info("Getting tweetsByAuthor, author: {}, count: {}, offset: {}", authorId, count, offset);
 
-    return tweetRepository.getTweets().filter(matchAuthorById(authorId)).skip(offset).limit(count)
+    return tweetRepository.getTweets().filter(Filter.matchAuthorById(authorId)).skip(offset).limit(count)
         .collect(Collectors.toList());
   };
 
-  Predicate<Tweet> matchAuthorById(String wantedAuthor) {
-    return tweet -> wantedAuthor.equals(tweet.getAuthorId());
-  }
 }
