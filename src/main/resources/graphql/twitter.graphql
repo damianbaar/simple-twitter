@@ -1,7 +1,10 @@
+scalar DateTime
+
 type Tweet {
   id: ID!
   message: String!
   authorId: String!
+  creationDate: DateTime
 }
 
 type FollowerEdge {

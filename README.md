@@ -36,6 +36,7 @@ mutation appendData {
     id
     name
     followers {
+      name
       id
     }
     tweets {
@@ -43,6 +44,7 @@ mutation appendData {
       id
     }
   }
+
   tweetsByAuthor(authorId: "4c309ddc-9cbc-4154-a698-880498c1e717", count: 10, offset: 0) {
     message
   }
