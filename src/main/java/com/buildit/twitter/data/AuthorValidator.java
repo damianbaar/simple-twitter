@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 import io.vavr.control.Validation;
 
 @Component
-/* @formatter:off */
 public class AuthorValidator {
 
   public Validation<String, Author> validate(String name) {
@@ -25,4 +24,3 @@ public class AuthorValidator {
       Case($(), Validation.valid(field)));
   }
 }
-/* @formatter:on */

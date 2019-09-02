@@ -24,8 +24,7 @@ public class Mutation implements GraphQLMutationResolver {
   @Autowired
   private TweetValidation tweetValidation;
 
-  // INFO: with $Valid / $Invalid patterns loosing type interference
-  /* @formatter:off */
+  // consider getOrElseThrow
   public Tweet addTweet(String message, String authorId) throws ValidationError {
     return Match(tweetValidation.validate(message, authorId)).of(
       Case($(m -> m.isValid()), m -> tweetRepository.addTweet(m.get())), 
@@ -36,5 +35,4 @@ public class Mutation implements GraphQLMutationResolver {
         })
     );
   }
-  /* @formatter:on */
 }

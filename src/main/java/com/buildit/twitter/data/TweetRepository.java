@@ -1,11 +1,11 @@
 package com.buildit.twitter.data;
 
-import java.util.Optional;
 import java.util.stream.Stream;
 
 import com.buildit.twitter.data.dto.Tweet;
 
 import io.vavr.collection.List;
+import io.vavr.control.Option;
 import lombok.Builder;
 import lombok.Data;
 
@@ -13,14 +13,14 @@ import lombok.Data;
 @Builder
 public class TweetRepository implements ITweetRepository {
   @Builder.Default
-  private Optional<List<Tweet>> tweets = Optional.of(List.empty());
+  private Option<List<Tweet>> tweets = Option.of(List.empty());
 
   public Stream<Tweet> getTweets() {
     return tweets.get().toJavaStream();
   }
 
   public Tweet addTweet(Tweet tweet) {
-    tweets = Optional.of(tweets.get().prepend(tweet));
+    tweets = Option.of(tweets.get().prepend(tweet));
     return tweet;
   }
 }

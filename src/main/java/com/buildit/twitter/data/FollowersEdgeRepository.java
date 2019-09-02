@@ -1,11 +1,9 @@
 package com.buildit.twitter.data;
 
-import java.util.Optional;
-
-import com.buildit.twitter.data.dto.Author;
 import com.buildit.twitter.data.dto.FollowerEdge;
 
 import io.vavr.collection.List;
+import io.vavr.control.Option;
 import lombok.Builder;
 import lombok.Data;
 
@@ -13,13 +11,14 @@ import lombok.Data;
 @Builder
 public class FollowersEdgeRepository implements IFollowerEdgesRepository {
   @Builder.Default
-  private Optional<List<FollowerEdge>> edges = Optional.of(List.empty());
+  private Option<List<FollowerEdge>> edges = Option.of(List.empty());
 
-  public Optional<List<FollowerEdge>> getEdges() {
+  public Option<List<FollowerEdge>> getEdges() {
     return edges;
   }
 
-  public FollowerEdge follow(Author a, Author b) {
-    return null;
+  public FollowerEdge addEdge(FollowerEdge edge) {
+    edges  = Option.of(edges.get().append(edge));
+    return edge;
   }
 }

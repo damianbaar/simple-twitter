@@ -1,14 +1,12 @@
 package com.buildit.twitter.data;
 
-import java.util.Optional;
-
-import com.buildit.twitter.data.dto.Author;
 import com.buildit.twitter.data.dto.FollowerEdge;
 
 import io.vavr.collection.List;
+import io.vavr.control.Option;
 
 public interface IFollowerEdgesRepository {
-  FollowerEdge follow(Author a, Author b);
+  FollowerEdge addEdge(FollowerEdge edge);
 
-  Optional<List<FollowerEdge>> getEdges();
+  Option<List<FollowerEdge>> getEdges();
 }

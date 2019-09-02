@@ -9,8 +9,8 @@ type Tweet {
 
 type FollowerEdge {
   id: ID!
-  follower: Author!
-  following: Author!
+  userId: String!
+  followUserId: String!
 } 
 
 type Author {
@@ -29,4 +29,5 @@ type Query {
 type Mutation {
   addTweet(input: String!, author: String!) : Tweet!
   addAuthor(name: String!) : Author!
+  addFollower(userId: String!, followUserId: String!) : FollowerEdge!
 }

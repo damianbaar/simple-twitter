@@ -24,7 +24,6 @@ public class Mutation implements GraphQLMutationResolver {
   @Autowired
   private IAuthorRepository authorRepository;
 
-  /* @formatter:off */
   public Author addAuthor(String name) throws ValidationError {
     return Match(authorValidator.validate(name)).of(
       Case($(m -> m.isValid()), m -> authorRepository.addAuthor(m.get())), 
@@ -34,5 +33,4 @@ public class Mutation implements GraphQLMutationResolver {
         })
     );
   }
-  /* @formatter:on */
 }
