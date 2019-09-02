@@ -5,7 +5,9 @@ import java.util.stream.Stream;
 import com.buildit.twitter.data.dto.Tweet;
 
 public interface ITweetRepository {
+  Tweet addTweet(Tweet tweet);
+
   Stream<Tweet> getTweets();
 
-  Tweet addTweet(Tweet tweet);
+  Stream<Tweet> getTweetsById(String authorId);
 }

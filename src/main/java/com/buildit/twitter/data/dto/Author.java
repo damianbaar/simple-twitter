@@ -5,9 +5,11 @@ import java.util.UUID;
 import io.vavr.collection.List;
 import lombok.Builder;
 import lombok.Value;
+import lombok.experimental.Wither;
 
 @Value
 @Builder
+@Wither
 public class Author {
   @Builder.Default
   private String id = UUID.randomUUID().toString();

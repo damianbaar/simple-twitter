@@ -1,6 +1,26 @@
 ### GraphQL API
 
 #### Query
+* getting user wall
+```gql
+query test($input: UserWallInput) {
+  userWall(input: $input) {
+    message
+  }
+}
+```
+* payload
+```json
+{
+  "input": {
+  "authorId": "b8389d9f-d758-4831-a69b-199f389e7d6b",
+    "count": 100,
+    "offset": 0,
+    "withFollowersTweets": true
+  }
+}
+```
+
 * getting all tweets
 ```gql
 {

@@ -9,4 +9,7 @@ public interface IFollowerEdgesRepository {
   FollowerEdge addEdge(FollowerEdge edge);
 
   Option<List<FollowerEdge>> getEdges();
+
+  Boolean isFollowing(String userId, String userFollowId);
+  List<FollowerEdge> getFollowers(String userId);
 }

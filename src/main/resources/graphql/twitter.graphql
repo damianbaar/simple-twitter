@@ -19,11 +19,19 @@ type Author {
   tweets: [Tweet]!
   followers: [Author]
 }
- 
+
+input UserWallInput {
+  authorId: String
+  withFollowersTweets: Boolean
+  count: Int
+  offset: Int
+}
+
 type Query {
   tweets(count: Int, offset: Int): [Tweet]!
   tweetsByAuthor(authorId: String, count: Int, offset: Int): [Tweet]
   authors: [Author]
+  userWall(input: UserWallInput): [Tweet]!
 }
 
 type Mutation {

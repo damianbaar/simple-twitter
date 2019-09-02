@@ -23,4 +23,8 @@ public class TweetRepository implements ITweetRepository {
     tweets = Option.of(tweets.get().prepend(tweet));
     return tweet;
   }
+
+  public Stream<Tweet> getTweetsById(String authorId) {
+    return tweets.get().filter(tweet -> tweet.getAuthorId().equals(authorId)).toJavaStream();
+  }
 }

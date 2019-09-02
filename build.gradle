@@ -48,5 +48,5 @@ dependencies {
   runtime 'com.graphql-java-kickstart:graphiql-spring-boot-starter:5.10.0'
 
   // testing facilities
-  testCompile 'com.graphql-java-kickstart:graphql-spring-boot-starter-test'
+  testCompile 'com.graphql-java-kickstart:graphql-spring-boot-starter-test:5.10.0'
 }
