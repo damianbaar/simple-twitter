@@ -14,7 +14,7 @@ type Author {
   id: ID!
   name: String!
   tweets: [Tweet]!
-  followers: [FollowerEdge]
+  followers: [Author]
 }
  
 type Query {

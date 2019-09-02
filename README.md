@@ -76,3 +76,6 @@ mutation addTweet {
 * clone this repo
 * `./gradlew bootRun`
 * playground endpoint `http://localhost:9000/graphiql`
+
+### Maybe maybe
+* better semantics https://github.com/palatable/lambda

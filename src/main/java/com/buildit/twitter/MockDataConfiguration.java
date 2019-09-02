@@ -4,15 +4,19 @@ import java.util.Optional;
 import java.util.function.Function;
 
 import com.buildit.twitter.data.AuthorRepository;
+import com.buildit.twitter.data.FollowersEdgeRepository;
 import com.buildit.twitter.data.IAuthorRepository;
+import com.buildit.twitter.data.IFollowerEdgesRepository;
 import com.buildit.twitter.data.ITweetRepository;
 import com.buildit.twitter.data.TweetRepository;
 import com.buildit.twitter.data.dto.Author;
+import com.buildit.twitter.data.dto.FollowerEdge;
 import com.buildit.twitter.data.dto.Tweet;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import io.vavr.Function2;
 import io.vavr.collection.List;
 
 @Configuration
@@ -33,5 +37,23 @@ public class MockDataConfiguration {
     };
     List<Tweet> tweets = List.range(0, 10).map(makeTweet);
     return TweetRepository.builder().tweets(Optional.of(tweets)).build();
+  }
+
+  @Bean
+  public IFollowerEdgesRepository followers(IAuthorRepository authors) {
+    Function2<Author, Author, FollowerEdge> makeEdge = (userId, followUserId) -> {
+      return FollowerEdge.builder().followUserId(followUserId.getId()).userId(userId.getId()).build();
+    };
+
+    List<Author> authorsIndex = authors.getAuthors().orElse(List.of(Author.builder().name("UNKNOWN").build()));
+    Author author1 = authorsIndex.get(0);
+    Author author2 = authorsIndex.get(1);
+    Author author3 = authorsIndex.get(2);
+
+    return FollowersEdgeRepository.builder().edges(Optional.of(List.of(
+      makeEdge.apply(author1, author2),
+      makeEdge.apply(author2, author1), 
+      makeEdge.apply(author3, author1))
+    )).build();
   }
 }

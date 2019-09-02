@@ -8,4 +8,5 @@ public class Filter {
       return wantedAuthor.equals(tweet.getAuthorId());
     };
   }
+
 }
