@@ -7,7 +7,7 @@ import com.buildit.twitter.data.IFollowerEdgesRepository;
 import com.buildit.twitter.data.ITweetRepository;
 import com.buildit.twitter.data.dto.Author;
 import com.buildit.twitter.data.dto.Tweet;
-import com.buildit.twitter.graphql.resolver.wall.input.UserWallInput;
+import com.buildit.twitter.graphql.resolver.wall.UserWallInput;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -27,7 +27,7 @@ public class WallView {
   @Autowired
   private IFollowerEdgesRepository followEdgeRepository;
 
-  public List<Tweet> getUserWall(UserWallInput input) {
+  public Stream<Tweet> getUserWall(UserWallInput input) {
     Option<Author> maybeAuthor = 
       authorRepository.getAuthorById(input.getAuthorId());
 
@@ -47,7 +47,6 @@ public class WallView {
       .map(tweets -> tweets.reduce((a, b) -> Stream.concat(a, b)))
       .map(tweets -> tweets.skip(input.getOffset()).limit(input.getCount()))
       .map(tweets -> tweets.sorted((a, b) -> a.getCreationDate().isBefore(b.getCreationDate()) ? 1 : -1))
-      .get()
-      .collect(List.collector());
+      .getOrElse(Stream.of());
   }
 }

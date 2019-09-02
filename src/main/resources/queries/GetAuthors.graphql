@@ -1,0 +1,14 @@
+query GetAuthors {
+  authors{
+    id
+    name
+    followers {
+      name
+      id
+    }
+    tweets {
+      message
+      id
+    }
+  }
+}

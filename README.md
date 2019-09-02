@@ -101,3 +101,4 @@ mutation addTweet {
 
 ### Maybe maybe
 * better semantics https://github.com/palatable/lambda
+* easier to follow https://github.com/google/rejoiner

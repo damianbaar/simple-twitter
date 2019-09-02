@@ -1,0 +1,6 @@
+query UserWall($input: UserWallInput) {
+  userWall(input: $input) {
+    message
+    creationDate
+  }
+}

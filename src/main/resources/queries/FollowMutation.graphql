@@ -1,0 +1,7 @@
+mutation AddFolower($userId: String, $followUserId: String) {
+  addFollower(
+    userId: $userId
+    followUserId: $followUserId) {
+    id
+  }
+}

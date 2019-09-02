@@ -1,15 +1,15 @@
-Scenarios
-Posting
-A user should be able to post a 140 character message. - done
+## Scenarios
+### Posting
+* A user should be able to post a 140 character message.
 
-Wall
-A user should be able to see a list of the messages they've posted, in reverse chronological order. - done
+### Wall
+* A user should be able to see a list of the messages they've posted, in reverse chronological order. 
 
-Following
-A user should be able to follow another user. Following doesn't have to be reciprocal: Alice can follow Bob without Bob having to follow Alice.
+### Following
+* A user should be able to follow another user. Following doesn't have to be reciprocal: Alice can follow Bob without Bob having to follow Alice. - done
 
-Timeline
-A user should be able to see a list of the messages posted by all the people they follow, in reverse chronological order.
+### Timeline
+A user should be able to see a list of the messages posted by all the people they follow, in reverse chronological order. - done
 
-* 
+### Not implicit - not yet done
 don't care about registering users: a user is created as soon as they post their first message
