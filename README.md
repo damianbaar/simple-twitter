@@ -57,6 +57,7 @@ query test($input: UserWallInput) {
     name
   }
 }
+```
 
 * adding authors
 ```gql
