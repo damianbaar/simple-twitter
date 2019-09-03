@@ -14,7 +14,6 @@ import static io.vavr.API.Match;
 import java.text.MessageFormat;
 
 @Component
-/* @formatter:off */
 public class TweetValidation {
   private static final Integer MAX_MESSAGE_LENGTH = 140;
 
@@ -43,4 +42,3 @@ public class TweetValidation {
       Case($(), Validation.valid(field)));
   }
 }
-/* @formatter:on */

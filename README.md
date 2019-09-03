@@ -1,6 +1,23 @@
-### GraphQL API
+# Twitter like message adding
+Simple app to create `tweets-like` messages with simple `follow` user mechanism. Based on `GraphQL` and `SpringBoot`.
 
-#### Query
+## Handled scenarios
+### Posting
+* A user should be able to post a 140 character message - you have to create `author` first thru `addAuthor` mutation.
+
+### Wall
+* A user should be able to see a list of the messages they've posted, in reverse chronological order. 
+
+### Following
+* A user should be able to follow another user. 
+
+### Timeline
+A user should be able to see a list of the messages posted by all the people they follow, in reverse chronological order.
+
+## GraphQL API
+* some examples of queries can be found in `resources/queries` folder.
+
+### Example queries
 * getting user wall
 ```gql
 query test($input: UserWallInput) {
@@ -49,7 +66,7 @@ mutation appendData {
   }
 }
 ```
-* getting stuff
+* getting author related things
 ```gql
 {
   authors{
@@ -75,16 +92,20 @@ mutation appendData {
   }
 }
 ```
-#### Mutation
-```gql
 
+### Example mutation
+* adding author
+```gql
 mutation addAuthor {
   addAuthor(name: "test") {
     id
     name
   }
 }
+```
 
+* adding tweet
+```gql
 mutation addTweet {
   addTweet(input: "<message>", author: "<author_id>") {
     authorId
@@ -93,11 +114,19 @@ mutation addTweet {
   }
 }
 ```
+
 ### Development
 #### Running locally
 * clone this repo
 * `./gradlew bootRun`
-* playground endpoint `http://localhost:9000/graphiql`
+* go to playground endpoint `http://localhost:9000/graphiql`
+
+#### Running tests
+* `./gradlew test`
+
+#### TODO
+* improve tests
+* improve docs
 
 ### Maybe maybe
 * better semantics https://github.com/palatable/lambda

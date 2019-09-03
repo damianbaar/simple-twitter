@@ -18,6 +18,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+// FIXME add given / when / then and some mock data
+// FIXME provide beans per case rather than rely on MockData
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ApplicationIngrationTests {
@@ -60,7 +62,6 @@ public class ApplicationIngrationTests {
     assertTrue(errors > 0);
   }
 
-  // add given / when / then and some mock data
   @Test
   public void getUserWallWhenAllOk() throws IOException {
     Author author = authorRepository.getAuthors().get().get(0);
