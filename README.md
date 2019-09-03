@@ -1,7 +1,8 @@
-# Twitter like message adding
-Simple app to create `tweets-like` messages with simple `follow` user mechanism. Based on `GraphQL` and `SpringBoot`.
+# Backend for Twitter like message app
+Simple app to create `tweets-like` messages with simple `follow` user mechanism. \
+Based upon `GraphQL` and `SpringBoot`.
 
-## Handled scenarios
+## Working scenarios
 ### Posting
 * A user should be able to post a 140 character message - you have to create `author` first thru `addAuthor` mutation.
 
@@ -66,6 +67,7 @@ mutation appendData {
   }
 }
 ```
+
 * getting author related things
 ```gql
 {
@@ -80,15 +82,6 @@ mutation appendData {
       message
       id
     }
-  }
-
-  tweetsByAuthor(authorId: "4c309ddc-9cbc-4154-a698-880498c1e717", count: 10, offset: 0) {
-    message
-  }
-  tweets(count: 10, offset: 0) {
-    id
-    message
-    authorId
   }
 }
 ```
@@ -119,7 +112,7 @@ mutation addTweet {
 #### Running locally
 * clone this repo
 * `./gradlew bootRun`
-* go to playground endpoint `http://localhost:9000/graphiql`
+* go to playground endpoint `http://localhost:9000/graphiql` or use alternative tool to query `graphql` - [`insomnia`](https://insomnia.rest/graphql/)
 
 #### Running tests
 * `./gradlew test`
